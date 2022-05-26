@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Votação</title>
 </head>
 <body>
-    <h1>{{ pergunta.texto }}</h1>
-    <ul>
-    {% for alternativa in pergunta.alternativa_set.all %}
-        <li>{{alternativa.texto}}</li>
+    <legend><h1>{{ pergunta.texto }}</h1></legend>
+    <p>Data: {{pergunta.data}}</p>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <form action="{% url 'enquetes:vote' pergunta.id %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+    {% for alt in pergunta.alternativa_set.all %}
+        <input type="radio" name="alternativa" 
+            id="alt{{ forloop.counter }}" value="{{ alt.id }}">
+        <label for="alt{{ forloop.counter }}">
+            {{ alt.texto }}</label><br>
     {% endfor %}
-    </ul>
+    </fieldset>
+    <input type="submit" value="Vote">
+    </form>
+    <a href="{% url 'enquetes:index' %}">Página Principal</a>
 </body>
 </html>

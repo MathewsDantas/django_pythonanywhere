@@ -1,6 +1,7 @@
 from django.urls import path
 from enquetes.views import index,detail,results,vote
 
+app_name = 'enquetes'
 urlpatterns = [
     path('',index, name='index'),
 
