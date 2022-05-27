@@ -14,7 +14,11 @@
                 <!--href="/enquetes/{{pergunta.id}}"-->
                 <li><a href="{% url 'enquetes:detail' pergunta.id %}">
                     {{ pergunta.texto}}
-                </a></li>
+                    </a>
+                    <a href="{% url 'enquetes:results' pergunta.id %}">
+                        (Resultado Parcial)
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     {% else %}

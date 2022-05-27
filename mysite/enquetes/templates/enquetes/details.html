@@ -15,12 +15,12 @@
     <form action="{% url 'enquetes:vote' pergunta.id %}" method="POST">
     {% csrf_token %}
     <fieldset>
-    {% for alt in pergunta.alternativa_set.all %}
-        <input type="radio" name="alternativa" 
-            id="alt{{ forloop.counter }}" value="{{ alt.id }}">
-        <label for="alt{{ forloop.counter }}">
-            {{ alt.texto }}</label><br>
-    {% endfor %}
+        {% for alt in pergunta.alternativa_set.all %}
+            <input type="radio" name="alternativa" 
+                id="alt{{ forloop.counter }}" value="{{ alt.id }}">
+            <label for="alt{{ forloop.counter }}">
+                {{ alt.texto }}</label><br>
+        {% endfor %}
     </fieldset>
     <input type="submit" value="Vote">
     </form>
