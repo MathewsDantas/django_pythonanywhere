@@ -8,7 +8,7 @@ from enquetes.models import Alternativa
 
 # Create your views here.
 def index(request):
-    quest_recent = Pergunta.objects.order_by('-data')[:5]
+    quest_recent = Pergunta.objects.order_by('-data')[:25]
     context = {'quest_recent': quest_recent}
     return render(request, 'enquetes/index.html', context)
 
