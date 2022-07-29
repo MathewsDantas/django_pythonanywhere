@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CadastroSimulado</title>
+</head>
+<body>
+    <form action="{% url 'simulado:criasimulado' %}" method="POST">
+        {% csrf_token %}
+        <fieldset>
+        <input name="titulo" id="" placeholder="Titulo simulado">
+        </fieldset>
+        <fieldset>
+        <input name="pontuacao" id="" placeholder="Pontuacao simulado" required >
+        </fieldset>
+        <fieldset>
+        <input name="data_fim" id="" type="date" placeholder="Data fim" required >
+        </fieldset>
+        <fieldset>
+        <input name="texto_quest" id="" placeholder="Texto da questao" required >
+        </fieldset>
+        <fieldset>
+        <input name="pont_quest" id="" placeholder="Pontuacao da questao" required >
+        </fieldset>
+        <input name="alt01" id="" placeholder="Alt01" required >
+        <input name="alt02" id="" placeholder="Alt02" required >
+        <input name="alt03" id="" placeholder="Alt03">
+        <input name="alt04" id="" placeholder="Alt04">
+        <button type="submit" id="form-submit" class="button">Cria simulado</button>
+    </form>
+</body>
+</html>

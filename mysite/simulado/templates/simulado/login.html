@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="{% url 'simulado:login' %}" method="POST">
+        {% csrf_token %}
+        <fieldset>
+        <input name="username" id="username" placeholder="Digite seu email" required >
+        </fieldset>
+        <fieldset>
+        <input name="senha" id="senha" placeholder="Digite sua senha" required>
+        </fieldset>
+        <button type="submit" id="form-submit" class="button">Entrar</button>
+    </form>
+        <p >Não tem uma conta? <a href="{% url 'simulado:cadastrousuario' %}">Cadastrar-se</a></p>
+</body>
+</html>

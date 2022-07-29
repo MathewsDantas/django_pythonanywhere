@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulados</title>
+</head>
+<body>
+    <h1>SIMULADOS</h1>
+    <ul>
+        {% for simulado in simulados %}
+            <li>
+                <a href="{% url 'simulado:detalhe' simulado.id %}">
+                    {{ simulado.titulo }}
+                </a>
+                <a href="{% url 'simulado:resposta' simulado.id %}">
+                    (Respostas)
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
