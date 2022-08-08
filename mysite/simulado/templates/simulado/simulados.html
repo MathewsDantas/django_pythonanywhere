@@ -8,17 +8,19 @@
 </head>
 <body>
     <h1>SIMULADOS</h1>
+    <p>Logado como: {{ request.user.username }}</p>
+    <a href="{% url 'simulado:dashboard' %}">Meus Simulados</a>
     <ul>
         {% for simulado in simulados %}
             <li>
                 <a href="{% url 'simulado:detalhe' simulado.id %}">
                     {{ simulado.titulo }}
                 </a>
-                <a href="{% url 'simulado:resposta' simulado.id %}">
-                    (Respostas)
-                </a>
             </li>
         {% endfor %}
+        <br>
+        <a href="{% url 'simulado:login' %}">Login</a>
+        <a href="{% url 'simulado:cadastrousuario' %}">Cadastrar-se</a>
     </ul>
 </body>
 </html>

@@ -7,27 +7,39 @@
     <title>CadastroSimulado</title>
 </head>
 <body>
+    <h1>Cadastro Simulado</h1>
     <form action="{% url 'simulado:criasimulado' %}" method="POST">
         {% csrf_token %}
         <fieldset>
-        <input name="titulo" id="" placeholder="Titulo simulado">
+            <input name="titulo" id="" placeholder="Titulo simulado">
         </fieldset>
         <fieldset>
-        <input name="pontuacao" id="" placeholder="Pontuacao simulado" required >
+            <input name="pontuacao" type="number" id="" placeholder="Pontuacao simulado" required >
         </fieldset>
         <fieldset>
-        <input name="data_fim" id="" type="date" placeholder="Data fim" required >
+            Data de encerramento:<input name="data_fim" id="" type="date" placeholder="Data fim" required >
+        </fieldset>
+        
+        <fieldset>
+            <input name="texto_quest" id="" placeholder="Texto da questão" required >
         </fieldset>
         <fieldset>
-        <input name="texto_quest" id="" placeholder="Texto da questao" required >
+            <input name="alt01" id="" placeholder="alternativa 01" required >
+            <input type="radio" name="correta" value="alt01" >Correta
         </fieldset>
         <fieldset>
-        <input name="pont_quest" id="" placeholder="Pontuacao da questao" required >
+            <input name="alt02" id="" placeholder="alternativa 02" required >
+            <input type="radio" name="correta" value="alt02" >Correta
         </fieldset>
-        <input name="alt01" id="" placeholder="Alt01" required >
-        <input name="alt02" id="" placeholder="Alt02" required >
-        <input name="alt03" id="" placeholder="Alt03">
-        <input name="alt04" id="" placeholder="Alt04">
+        <fieldset>
+            <input name="alt03" id="" placeholder="alternativa 03">
+            <input type="radio" name="correta" value="alt03" >Correta
+        </fieldset>
+        <fieldset>
+            <input name="alt04" id="" placeholder="alternativa 04">
+            <input type="radio" name="correta" value="alt04" >Correta
+        </fieldset>
+
         <button type="submit" id="form-submit" class="button">Cria simulado</button>
     </form>
 </body>

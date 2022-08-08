@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe</title>
+</head>
+<body>
+    <h1>RESPOSTAS</h1>
+    <p>Logado como: {{ request.user.username }}</p>
+    <h1>SIMULADO: {{ simulado.titulo }}</h1>
+    <div>
+        <p>Feito por: {{ simulado.usuario }}</p>
+        <p>Data criação: {{ simulado.data_criacao }}</p>
+        <p>Finaliza em: {{ simulado.data_fim }}</p>
+    </div>
+
+    <div>
+        <p>Pontuação máxima: {{ simulado.pont_total }}</p>
+    </div>
+    <div>
+        <h2>Você tirou: {{ nota }}</h2>
+    </div>
+    <ul>
+        {% for r in respostas %}
+            <fieldset>    
+                {% if r.correta %}
+                    <p style="color: rgb(23, 150, 23);">{{ r.questao }} CORRETA</p>
+                {% else %}
+                    <p style="color: red;">{{ r.questao }} ERRADA</p>
+                {% endif %}
+                
+                {% for alt in r.questao.resposta_set.all %}
+                    {% if r == alt %}
+                        {% if r.correta %}
+                            <div style="background-color: rgba(62, 204, 62, 0.751);">
+                                <input type="radio" name="alternativa{{ alt.questao.id }}" checked>{{ alt.texto }}
+                            </div>
+                        {% else %}
+                            <div >
+                                <input type="radio" name="alternativa{{ alt.questao.id }}" checked>{{ alt.texto }}
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {% if alt.correta %}
+                            <div style="background-color: rgba(62, 204, 62, 0.751);">
+                                <input type="radio" name="alternativa{{ alt.questao.id }}" >{{ alt.texto }}
+                            </div>
+                        {% else %}
+                            <div>
+                                <input type="radio" name="alternativa{{ alt.questao.id }}">{{ alt.texto }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </fieldset>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'simulado:simulados' %}">Simulados</a>
+</body>
+</html>

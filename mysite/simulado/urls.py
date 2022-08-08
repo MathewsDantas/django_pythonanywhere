@@ -10,13 +10,16 @@ urlpatterns = [
         name='dashboard'),
     path('simulado/<int:simulado_id>/', views.detalheSimulado, 
         name='detalhe'),
-    path('simulado/resposta/<int:simulado_id>/', views.detalheSimulado, 
+    path('simulado/resposta/<int:simulado_id>/', views.resposta.as_view(), 
         name='resposta'),
 
     path('cadastrosimulado/', views.CriaSimulado.as_view(), 
         name= 'criasimulado'),
+    path('criaquestao/<int:simulado_id>/', views.CriaQuestao.as_view(), 
+        name= 'criaquestao'),
     path('cadastrousuario/', views.CadastroUsuario.as_view(), 
         name= 'cadastrousuario'),
+
 
     path('login/', views.LoginView.as_view(), 
         name= 'login'),

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CadastroUsuario</title>
+</head>
+{% if erro %}
+    {{ erro }}
+{% endif %}
+<body>
+    <h1>CADASTRO</h1>
+    <form action="{% url 'simulado:cadastrousuario' %}" method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <input name="nome" id="" placeholder="Nome">
+        </fieldset>
+        <fieldset>
+            <input name="email" id="" placeholder="Email" required >
+        </fieldset>
+        <fieldset>
+            <input name="senha" id="" type="password" placeholder="Senha" required >
+        </fieldset>
+        <button type="submit" id="form-submit" class="button">Cadastrar</button>
+    </form>
+</body>
+</html>

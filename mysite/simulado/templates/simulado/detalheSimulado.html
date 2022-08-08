@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe</title>
+</head>
+<body>
+    <p>Logado como: {{ request.user.username }}</p>
+    <h1>SIMULADO: {{ simulado.titulo }}</h1>
+    <div>
+        <p>Feito por: {{ simulado.usuario }}</p>
+        <p>Data criação: {{ simulado.data_criacao }}</p>
+        <p>Finaliza em: {{ simulado.data_fim }}</p>
+    </div>
+
+    <div>
+        <p>Pontuação máxima: {{ simulado.pont_total }}</p>
+    </div>
+    <ul>
+        <form action="{% url 'simulado:resposta' simulado.id %}" method="POST">
+            {% csrf_token %}
+            {% for questao in questoes %}
+                <fieldset>
+                    {{ questao }}
+                    {% for alt in questao.resposta_set.all %}
+                        <div>
+                            <input type="radio" name="alternativa{{ questao.id }}" value="{{ alt.id }}">{{ alt.texto }}
+                        </div>   
+                    {% endfor %}
+                </fieldset>
+            {% endfor %}
+        <input type="submit">
+        </form>
+
+        {% if simulado.usuario == request.user %}
+            <a href="{% url 'simulado:criaquestao' simulado.id %}">Deseja adicionar mais uma questão?</a>
+        {% endif %}
+    </ul>
+    <a href="{% url 'simulado:simulados' %}">Simulados</a>
+</body>
+</html>

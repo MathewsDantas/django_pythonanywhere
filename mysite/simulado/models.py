@@ -9,11 +9,12 @@ class Usuario(models.Model):
         return self.user.username
 
 class Simulado(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     titulo = models.CharField(max_length=50)
     pont_total = models.DecimalField(max_digits=6,decimal_places=2)
     data_criacao = models.DateField(auto_now_add=True)
     data_fim = models.DateField('Data de encerramento', null=True)
+    qtd_questoes = models.IntegerField()
 
     def __str__(self):
         return f"Titulo: {self.titulo} - Pontuacao: {self.pont_total} "
@@ -21,7 +22,7 @@ class Simulado(models.Model):
 class Questao(models.Model):
     simulado = models.ForeignKey(Simulado,on_delete=models.CASCADE)
     texto = models.CharField(max_length= 200)
-    pontuacao = models.DecimalField(max_digits=6,decimal_places=2)
+    pontuacao = models.DecimalField(max_digits=6,decimal_places=2, null= True)
 
     def __str__(self):
         return f"Texto: {self.texto} - Pontuacao: {self.pontuacao} "
