@@ -12,7 +12,7 @@
     <form action="{% url 'simulado:login' %}" method="POST">
         {% csrf_token %}
         <fieldset>
-        <input name="username" id="username" placeholder="Digite seu email" required >
+        <input name="username" id="username" placeholder="Digite seu nome" required >
         </fieldset>
         <fieldset>
         <input name="senha" type="password" id="senha" placeholder="Digite sua senha" required>
